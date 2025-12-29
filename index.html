@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    /* Mengambil file gambar */
+    background-image: url("https://statik.unesa.ac.id/profileunesa_konten_statik/uploads/ft/thumbnail/9b206cd3-e4fd-4372-bd43-64c85a394b98.png");
+
+    /* Memastikan gambar menutupi seluruh area layar */
+    background-size: cover;
+
+    /* Mencegah gambar berulang jika layar terlalu besar */
+    background-repeat: no-repeat;
+
+    /* Menjaga gambar tetap di posisinya saat di-scroll */
+    background-attachment: fixed;
+
+    /* Menempatkan gambar tepat di tengah */
+    background-position: center;
+  }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMB to Crypto - Fast Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow: hidden; }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800">
+
+    <div class="max-w-xl mx-auto px-4 py-10">
+        <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-white">
+            
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-800 p-8 text-white text-center">
+                <h1 class="text-2xl font-black tracking-tight uppercase">伏特</h1>
+                <p class="text-blue-100 text-xs mt-1 opacity-80">Fast • Secure • Automated Message</p>
+            </div>
+
+            <div class="p-7 space-y-6">
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">人民币</label>
+                            <input type="number" id="rmbInput" placeholder="0" class="w-full bg-transparent font-bold text-xl outline-none text-indigo-600">
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">加密资产</label>
+                            <select id="coinSelect" class="w-full bg-transparent font-bold text-lg outline-none cursor-pointer">
+                                <option value="USDT" data-rate="7.22">USDT</option>
+                                <option value="BTC" data-rate="715000">BTC</option>
+                                <option value="ETH" data-rate="20500">ETH</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-600 p-4 rounded-2xl text-white flex justify-between items-center shadow-lg shadow-indigo-200">
+                        <span class="text-sm font-medium opacity-90">预计收货:</span>
+                        <span id="displayCrypto" class="text-xl font-black">0.00 USDT</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-3 text-center tracking-widest">选择传输方式</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="showQR('Alipay', 'Alipay.jpg')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition group">
+                            <i class="fab fa-alipay text-2xl text-blue-500"></i>
+                            <span class="text-[10px] font-bold mt-1">Alipay</span>
+                        </button>
+                        <button onclick="showQR('WeChat', 'https://via.placeholder.com/300?text=QR+WECHAT+ANDA')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-green-500 hover:bg-green-50 transition group">
+                            <i class="fab fa-weixin text-2xl text-green-500"></i>
+                            <span class="text-[10px] font-bold mt-1">WeChat</span>
+                        </button>
+                        <button onclick="selectMethod('Bank')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-red-500 hover:bg-red-50 transition group">
+                            <i class="fas fa-university text-2xl text-red-500"></i>
+                            <span class="text-[10px] font-bold mt-1">Bank</span>
+                      <label class="block text-xs font-bold text-slate-500 uppercase mb-3 text-center tracking-widest">选择传输方式</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="showQR('Alipay', 'Alipay.jpg')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition group">
+                            <i class="fab fa-alipay text-2xl text-blue-500"></i>
+                            <span class="text-[10px] font-bold mt-1">Alipay</span>
+                        </button>
+                        <button onclick="showQR('WeChat', 'https://via.placeholder.com/300?text=QR+WECHAT+ANDA')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-green-500 hover:bg-green-50 transition group">
+                            <i class="fab fa-weixin text-2xl text-green-500"></i>
+                            <span class="text-[10px] font-bold mt-1">WeChat</span>
+                        </button>
+                        <button onclick="selectMethod('Bank')" class="flex flex-col items-center p-3 border-2 border-slate-100 rounded-2xl hover:border-red-500 hover:bg-red-50 transition group">
+                            <i class="fas fa-university text-2xl text-red-500"></i>
+                            <span class="text-[10px] font-bold mt-1">Bank</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="selectedMethod" value="尚未选择">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2 ml-1">收款人钱包地址</label>
+                    <input type="text" id="walletAddress" placeholder="输入您的钱包地址" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-indigo-500 outline-none text-sm font-mono">
+                </div>
+
+                <button onclick="sendToTelegram()" class="w-full bg-slate-900 hover:bg-black text-white font-bold py-5 rounded-2xl shadow-xl transition-all transform active:scale-95 flex justify-center items-center gap-2">
+                    <i class="fab fa-telegram-plane text-xl"></i>
+                    订单确认
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="qrModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-black opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-sm mx-auto rounded-3xl shadow-2xl z-50 overflow-y-auto">
+            <div class="modal-content py-6 px-6 text-center">
+                <h3 id="qrTitle" class="text-lg font-bold mb-4">Scan QR Code</h3>
+                <img id="qrImage" src="" alt="QR Code" class="mx-auto border-4 border-slate-100 rounded-xl mb-4">
+                <p class="text-xs text-slate-500 mb-6">请扫描并根据标价计算器进行付款。.</p>
+                <button onclick="closeModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl transition">关闭并继续</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rmbInput = document.getElementById('rmbInput');
+        const coinSelect = document.getElementById('coinSelect');
+        const displayCrypto = document.getElementById('displayCrypto');
+        const methodInput = document.getElementById('selectedMethod');
+
+        // GANTI USERNAME TELEGRAM ANDA
+        const TELEGRAM_USER = "llzz8866"; 
+
+        function updateCalc() {
+            const rmb = parseFloat(rmbInput.value) || 0;
+            const rate = parseFloat(coinSelect.options[coinSelect.selectedIndex].getAttribute('data-rate'));
+            const coin = coinSelect.value;
+            let res = rmb / rate;
+            displayCrypto.innerText = (coin === 'USDT' ? res.toFixed(2) : res.toFixed(6)) + " " + coin;
+        }
+
+        rmbInput.addEventListener('input', updateCalc);
+        coinSelect.addEventListener('change', updateCalc);
+
+        function showQR(name, url) {
+            document.getElementById('qrTitle').innerText = "QR Code " + name;
+            document.getElementById('qrImage').src = url;
+            methodInput.value = name;
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('modal-active');
+        }
+
+        function selectMethod(name) {
+            methodInput.value = name;
+            alert("Metode " + name + " dipilih. Silakan klik Konfirmasi untuk detail rekening.");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('modal-active');
+        }
+
+        function sendToTelegram() {
+            const rmb = rmbInput.value;
+            const wallet = document.getElementById('walletAddress').value;
+            if(!rmb || !wallet) return alert("请填写人民币金额和钱包地址");
+
+            const msg = `🔔 *ORDER BARU* 🔔\n\n` +
+                        `💰 Tukar: ${rmb} RMB\n` +
+                        `📥 Terima: ${displayCrypto.innerText}\n` +
+                        `💳 Metode: ${methodInput.value}\n` +
+                        `📍 Wallet: \`${wallet}\`\n\n` +
+                        `_Saya sudah/akan segera melakukan transfer._`;
+
+            window.location.href = `https://t.me/${TELEGRAM_USER}?text=${encodeURIComponent(msg)}`;
+        }
+    </script>
+</body>
+</html>
